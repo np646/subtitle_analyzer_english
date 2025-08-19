@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:subtitle_analyzer_english/services/analyzer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,7 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         selectedFile = result.files.single.name;
       });
+
       print("Selected file: ${result.files.first.name}");
+
+      // Calling analyzer 
+      final analyzer = Analyzer(result);
+      await analyzer.analyze();
     } else {
       setState(() {
         selectedFile = "No file selected";

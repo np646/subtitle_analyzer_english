@@ -4,6 +4,7 @@ import 'package:file_picker/file_picker.dart';
 
 class Analyzer {
   final FilePickerResult subtitleFile;
+  var tokenList = <String>[];
 
   //Constructor
   Analyzer(this.subtitleFile);
@@ -31,13 +32,15 @@ class Analyzer {
               .transform(utf8.decoder)
               .transform(const LineSplitter())) {
         if (counter >= 3 && line.trim().isNotEmpty) {
-          print(cleanLine(line).toLowerCase() + "\n");
+          tokenize(cleanLine(line).toLowerCase());
         } else if (line.trim().isEmpty) {
           counter = 0;
         }
         counter++;
       }
     }
+    print("Token count: ${tokenList.length}");
+    print("Token list: $tokenList");
   }
 
   /*
@@ -54,5 +57,18 @@ class Analyzer {
     // remove numbers
     result = result.replaceAll(RegExp(r"\d+"), "");
     return result;
+  }
+
+  /*
+   * tokenizer: splits a line into tokens and adds them to the token list, removing any empty spaces.
+   */
+  void tokenize(String line) {
+    List<String> tokens = line.split(" ");
+
+    for (var token in tokens) {
+      if (token.isNotEmpty) {
+        tokenList.add(token.trim());
+      }
+    }
   }
 }

@@ -4,6 +4,6 @@ The objective of this project is to create a Flutter application capable of anal
 ## To do
 - [x] Allow users to upload a subtitle file (.srt).
 - [x] Clean the contents of the subtitle file by removing timestamps and indices.
-- [ ] Tokenize the file and convert each entry to lowercase.
+- [x] Tokenize the file and convert each entry to lowercase.
 - [ ] Match tokens with an internal dictionary to categorize them by CEFR level.
 - [ ] Display the results to the user.
